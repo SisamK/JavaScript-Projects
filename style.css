@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    padding: 20px;
+}
+
+.outputScreen {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: right;
+    border: none;
+    width: calc(90% + 20px);
+    margin: -10px -10px 20px -10px;
+    padding: 10px;
+    background-color: #d3d3d3;
+    border-radius: 4px;
+}
+
+.formulaScreen {
+    font-size: 12px;
+    color: #777;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+button {
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button.jumbo {
+    width: 100px;
+}
+
+button#clear {
+    background: #ff7e67;
+}
+
+button#backspace {
+    background: #bbbbbb;
+}
+
+button#percentage,
+button#square-root {
+    background: #72d7b3;
+}
+
+button.operator {
+    background: #ffbb55;
+}
+
+button#equals {
+    background: #5588ff;
+}
+
+button#zero {
+    width: 110px;
+}
+
+button#decimal {
+    background: #5588ff;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+button#equals:active {
+    transform: scale(0.95);
+}
+.author {
+  text-align: center;
+  font-family: times roman;
+  font-size: 30px;
+  margin-top: 30px;
+}
+.author a {
+  text-decoration: none;
+  color: red;
+  line-height: 40px;
+}
