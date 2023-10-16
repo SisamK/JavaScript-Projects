@@ -1,101 +1,84 @@
-const display = document.getElementById("display");
-const buttons = document.querySelectorAll("button");
+const message = document.querySelector('.message');
+const score = document.querySelector('.score');
+const buttons = document.querySelectorAll('button');
+const winnerScores = [0, 0];
 
-let currentValue = "";
-let formula = "";
-let isResultDisplayed = false;
+// Add event listeners to buttons
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', playGame);
+}
 
-buttons.forEach((button) => {
-    button.addEventListener("click", handleButtonClick);
-});
+function playGame(e) {
+  
+    let playerSelection = e.target.innerText;
+    let computerSelection = Math.random();
 
-document.addEventListener("keydown", handleKeyboardInput);
 
-function handleKeyboardInput(event) {
-    const key = event.key;
-    const allowedKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "+", "-", "*", "/", "=", "Enter"];
+    if (computerSelection < 0.34) {
+        computerSelection = 'ROCK';
+    } else if (computerSelection <= 0.67) {
+        computerSelection = 'PAPER';
+    } else {
+        computerSelection = 'SCISSORS';
+    }
 
-    if (allowedKeys.includes(key)) {
-        event.preventDefault();
-        const button = document.querySelector(`button[value="${key}"]`);
-        if (button) {
-            button.click();
+    
+    let result = checkWinner(playerSelection, computerSelection);
+
+  
+    if (result === 'Player') {
+        result += ' wins!';
+    
+        winnerScores[0]++;
+    }
+
+    if (result === 'Computer') {
+        result += ' wins!';
+        winnerScores[1]++;
+    }
+
+    if (result === 'Draw') {
+        result += ". It's a tie!";
+    }
+
+    score.innerHTML = 'Player: [ ' + winnerScores[0] + ' ] Computer: [ ' + winnerScores[1] + ' ]';
+
+    messenger('Player: <strong>' + playerSelection + '</strong> Computer: <strong>' + computerSelection + '</strong><br>' + result);
+}
+
+function messenger(selectionMessage) {
+    message.innerHTML = selectionMessage;
+}
+
+function checkWinner(player, computer) {
+    player = player.toUpperCase();
+    computer = computer.toUpperCase();
+
+    if (player === computer) {
+        return 'Draw';
+    }
+
+    if (player === 'ROCK') {
+        if (computer === 'PAPER') {
+            return 'Computer';
+        } else {
+            return 'Player';
         }
     }
 
-    if (key === "Backspace") {
-        backspace();
+    if (player === 'PAPER') {
+        if (computer === 'SCISSORS') {
+            return 'Computer';
+        } else {
+            return 'Player';
+        }
     }
 
-    if (key === "Escape") {
-        clearDisplay();
+    if (player === 'SCISSORS') {
+        if (computer === 'ROCK') {
+            return 'Computer';
+        } else {
+            return 'Player';
+        }
     }
-}
-
-function handleButtonClick(event) {
-    if (isResultDisplayed) {
-        clearDisplay();
-        isResultDisplayed = false;
-    }
-
-    const buttonValue = event.target.value;
-
-    if (buttonValue === "AC") {
-        clearDisplay();
-    } else if (buttonValue === "=") {
-        calculateResult();
-    } else if (buttonValue === "backspace") {
-        backspace();
-    } else if (buttonValue === "sqrt") {
-        calculateSquareRoot();
-    } else {
-        updateDisplay(buttonValue);
-    }
-}
-
-function clearDisplay() {
-    currentValue = "";
-    formula = "";
-    display.textContent = "0";
-}
-
-function updateDisplay(value) {
-    if (value === "." && currentValue.includes(".")) {
-        return;
-    }
-
-    if (value === "0" && currentValue === "0") {
-        return;
-    }
-
-    if (value === "0" && currentValue === "") {
-        return;
-    }
-
-    currentValue += value;
-    display.textContent = currentValue;
-}
-
-function backspace() {
-    if (currentValue.length > 0) {
-        currentValue = currentValue.slice(0, -1);
-        display.textContent = currentValue;
-    }
-}
-
-function calculateResult() {
-    try {
-        formula = currentValue.replace(/x/g, "*").replace(/‑/g, "-").replace(/÷/g, "/");
-        currentValue = eval(formula).toString();
-        display.textContent = currentValue;
-        isResultDisplayed = true;
-    } catch (error) {
-        display.textContent = "Error";
-    }
-}
-
-function calculateSquareRoot() {
-    currentValue = Math.sqrt(parseFloat(currentValue)).toString();
-    display.textContent = currentValue;
-    isResultDisplayed = true;
 }

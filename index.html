@@ -1,37 +1,41 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <div id="app">
-        <div class="calculator">
-            <div class="formulaScreen"></div>
-            <div id="display" class="outputScreen">0</div>
-            <div>
-                <button class="jumbo" id="clear" value="AC">AC</button>
-                <button id="backspace" value="backspace">⌫</button>
-                <button id="percentage" value="%">%</button>
-                <button id="divide" value="/">/</button>
-                <button id="seven" value="7">7</button>
-                <button id="eight" value="8">8</button>
-                <button id="nine" value="9">9</button>
-                <button id="multiply" value="x">x</button>
-                <button id="four" value="4">4</button>
-                <button id="five" value="5">5</button>
-                <button id="six" value="6">6</button>
-                <button id="subtract" value="‑">‑</button>
-                <button id="one" value="1">1</button>
-                <button id="two" value="2">2</button>
-                <button id="three" value="3">3</button>
-                <button class="jumbo" id="zero" value="0">0</button>
-                <button id="decimal" value=".">.</button>
-                <button id="equals" value="=">=</button>
-                <button id="square-root" value="sqrt">√</button>
-                <button id="addition" value="+">+</button>
-            </div>
+    <div class="header">
+        <img src="/img/logo.png" alt="Rock Paper Scissors Logo" class="logo">
+    <h1>Rock, Paper, Scissors</h1></div>
+    <div>
+        <section>
+    <p>Select either rock, paper, or scissors and see if you can beat the computer!</p>
+    <p><strong>Remember:</strong> "Rock breaks scissors, scissors cuts paper, paper covers rock."</p></section>
+</div>
+    <div class="score">
+    </div>
+    <div class="message">
+    </div>
+    <div>
+        <div class="button-container">
+            <img src="/img/rock.png" alt="Rock">
+            <button type="button" id="text">ROCK
+            </button>
         </div>
-        <div class="author">Code By<br><a href="https://codepen.io/SisamK" target="_blank">SisamK</a></div>
+        <div class="button-container">
+            <img src="/img/paper.png" alt="Paper">
+            <button type="button" id="text">PAPER
+            </button>
+        </div>
+        <div class="button-container">
+            <img src="/img/scissor.png" alt="Scissors">
+            <button type="button" id="scissors">SCISSORS
+            </button>
+            <script src="/script.js"></script>
+        </div>
     </div>
 </body>
 </html>
